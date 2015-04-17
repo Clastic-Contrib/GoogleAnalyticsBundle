@@ -1,0 +1,19 @@
+{
+    "name": "clastic/google-analytics-bundle",
+    "description": "Clastic Google Analytics bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dries De Peuter",
+            "email": "dries@nousefreak.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "clastic/backoffice-bundle": "*"
+    },
+    "autoload": {
+        "psr-4": { "Clastic\\GoogleAnalyticsBundle\\": "" }
+    },
+    "minimum-stability": "dev"
+}

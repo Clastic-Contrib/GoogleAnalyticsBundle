@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="clastic.google_analytics.dashboard_listener.class">Clastic\GoogleAnalyticsBundle\EventListener\DashboardListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="clastic.google_analytics.dashboard_listener" class="%clastic.google_analytics.dashboard_listener.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="twig" />
+            <argument type="string" on-invalid="null">%clastic.google_analytics.clientId%</argument>
+            <argument type="string" on-invalid="null">%clastic.google_analytics.profileId%</argument>
+        </service>
+    </services>
+</container>
