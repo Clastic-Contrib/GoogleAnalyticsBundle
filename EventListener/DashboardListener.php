@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Clastic package.
  *
@@ -14,7 +15,7 @@ use Clastic\BackofficeBundle\Event\DashboardEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * DashboardListener
+ * DashboardListener.
  *
  * @author Dries De Peuter <dries@nousefreak.be>
  */
