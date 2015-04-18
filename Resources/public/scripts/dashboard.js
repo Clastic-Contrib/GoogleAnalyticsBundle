@@ -65,8 +65,10 @@
                 $gChart.on('success', function() {
                     $loading.hide();
                 });
+                $gChart.on('error', function() {
+                    $loading.text('You do not have permissions to see the data.');
+                });
             });
-
         });
     });
 })(jQuery);
