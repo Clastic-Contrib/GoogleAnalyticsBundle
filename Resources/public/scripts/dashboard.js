@@ -41,12 +41,7 @@
                     $loading.hide();
                 });
 
-                /**
-                 * Create a new DataChart instance with the given query parameters
-                 * and Google chart options. It will be rendered inside an element
-                 * with the id "chart-container".
-                 */
-                var $gChart = new gapi.analytics.googleCharts.DataChart({
+                var $gSessionChart = new gapi.analytics.googleCharts.DataChart({
                     query: {
                         metrics: 'ga:sessions',
                         dimensions: 'ga:date',
@@ -54,7 +49,7 @@
                         'end-date': 'today'
                     },
                     chart: {
-                        container: $chart.get(0),
+                        container: $chart.find('.ga-sessions').get(0),
                         type: 'LINE',
                         options: {
                             width: '100%'
@@ -62,13 +57,35 @@
                     }
                 });
 
-                $gChart.set({query: {ids: 'ga:' + props.profileId}}).execute();
-                $gChart.on('success', function(data) {
-                    $chartContainer.find('.count').text(data.response.totalsForAllResults['ga:sessions']);
+                $gSessionChart.set({query: {ids: 'ga:' + props.profileId}}).execute();
+                $gSessionChart.on('success', function(data) {
+                    $chartContainer.find('h4').removeClass('hidden');
+                    $chartContainer.find('.ga-count-sessions').text(data.response.totalsForAllResults['ga:sessions']);
                     $loading.hide();
                 });
-                $gChart.on('error', function() {
+                $gSessionChart.on('error', function() {
                     $loading.text('You do not have permissions to see the data.');
+                });
+
+                var $gHitsChart = new gapi.analytics.googleCharts.DataChart({
+                    query: {
+                        metrics: 'ga:hits',
+                        dimensions: 'ga:date',
+                        'start-date': '30daysAgo',
+                        'end-date': 'today'
+                    },
+                    chart: {
+                        container: $chart.find('.ga-hits').get(0),
+                        type: 'LINE',
+                        options: {
+                            width: '100%'
+                        }
+                    }
+                });
+
+                $gHitsChart.set({query: {ids: 'ga:' + props.profileId}}).execute();
+                $gHitsChart.on('success', function(data) {
+                    $chartContainer.find('.ga-count-hits').text(data.response.totalsForAllResults['ga:hits']);
                 });
             });
         });

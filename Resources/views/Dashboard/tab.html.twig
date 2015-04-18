@@ -1,10 +1,11 @@
 <div class="analytics-container" data-ga="{{ {clientId: clientId, profileId: profileId}|json_encode }}">
     <div class="chart-container">
-        <div class="header clearfix">
-            <h4 class="pull-left">Sessions for last 30 days</h4>
-            <div class="count pull-right label label-default text-lg"></div>
+        <div class="chart">
+            <h4 class="hidden">Sessions for the last 30 days <span class="ga-count-sessions pull-right label label-default"></span></h4>
+            <div class="ga-sessions"></div>
+            <h4 class="hidden">Page hits for the last 30 days <span class="ga-count-hits pull-right label label-default"></span></h4>
+            <div class="ga-hits"></div>
         </div>
-        <div class="chart"></div>
     </div>
     <div class="loading"><i class="fa fa-circle-o-notch fa-spin"></i> Loading</div>
     <div class="auth-container"></div>
