@@ -20,7 +20,8 @@
 
             $container.each(function(){
                 var $auth = $(this).find('.auth-container');
-                var $chart = $(this).find('.chart-container');
+                var $chartContainer = $(this).find('.chart-container');
+                var $chart = $chartContainer.find('.chart');
                 var props = $(this).data('ga');
                 var $loading = $container.find('.loading');
 
@@ -62,7 +63,8 @@
                 });
 
                 $gChart.set({query: {ids: 'ga:' + props.profileId}}).execute();
-                $gChart.on('success', function() {
+                $gChart.on('success', function(data) {
+                    $chartContainer.find('.count').text(data.response.totalsForAllResults['ga:sessions']);
                     $loading.hide();
                 });
                 $gChart.on('error', function() {
